@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Ups\Entity;
+namespace Ups\Entity\Paperless;
 
 /**
  * @author Maciej Kotlarz <maciej.kotlarz@pixers.uk>
