@@ -15,25 +15,33 @@ use Ups\NodeInterface;
 class UserCreatedForm implements NodeInterface
 {
     /**
-     * @var string
+     * @var array
      */
-    protected $documentID;
+    protected $documentIDs;
 
     /**
-     * @return string
+     * @param $documentId
      */
-    public function getDocumentID()
+    public function addDocumentID($documentId)
     {
-        return $this->documentID;
+        $this->documentIDs[] = $documentId;
     }
 
     /**
-     * @param string $documentID
+     * @return array
+     */
+    public function getDocumentIDs()
+    {
+        return $this->documentIDs;
+    }
+
+    /**
+     * @param array $documentIds
      * @return UserCreatedForm
      */
-    public function setDocumentID($documentID)
+    public function setDocumentIDs(array $documentIds)
     {
-        $this->documentID = $documentID;
+        $this->documentIDs = $documentIds;
 
         return $this;
     }
@@ -51,9 +59,10 @@ class UserCreatedForm implements NodeInterface
         }
 
         $node = $document->createElement('UserCreatedForm');
-        if ($this->getDocumentID() !== null)
+        if ($this->getDocumentIDs() !== null)
         {
-            $node->appendChild($document->createElement('DocumentID', $this->getDocumentID()));
+            foreach ($this->documentIDs as $documentID)
+            $node->appendChild($document->createElement('DocumentID', $documentID));
         }
 
         return $node;

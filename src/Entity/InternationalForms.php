@@ -154,7 +154,7 @@ class InternationalForms implements NodeInterface
     /**
      * @var
      */
-    private $userCreatedForm;
+    private $userCreatedForms;
 
     /**
      * @return array
@@ -352,8 +352,8 @@ class InternationalForms implements NodeInterface
         if ($this->getEEIFilingOption() !== null) {
             $node->appendChild($this->getEEIFilingOption()->toNode($document));
         }
-        if ($this->getUserCreatedForm() !== null) {
-            $node->appendChild($this->getUserCreatedForm()->toNode($document));
+        if ($this->getUserCreatedForms() !== null) {
+            $node->appendChild($this->getUserCreatedForms()->toNode($document));
         }
         foreach ($this->products as $product) {
             $node->appendChild($product->toNode($document));
@@ -568,14 +568,14 @@ class InternationalForms implements NodeInterface
         return $this->eeiFilingOption;
     }
 
-    public function setUserCreatedForm(UserCreatedForm $userCreatedForm)
+    public function setUserCreatedForms(UserCreatedForm $userCreatedForm)
     {
         $this->userCreatedForm = $userCreatedForm;
 
         return $this;
     }
 
-    public function getUserCreatedForm()
+    public function getUserCreatedForms()
     {
         return $this->userCreatedForm;
     }
