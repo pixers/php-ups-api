@@ -3,15 +3,11 @@
 
 namespace Ups\Entity\Paperless;
 
-
-use DOMDocument;
-use Ups\NodeInterface;
-
 /**
  * @author Maciej Kotlarz <maciej.kotlarz@pixers.uk>
  * @copyright 2019 PIXERS Ltd
  */
-class UserCreatedForm implements NodeInterface
+class UserCreatedForm
 {
     const FILE_FORMAT_BMP = 'bmp';
     const FILE_FORMAT_DOC = 'doc';
