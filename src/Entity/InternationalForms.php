@@ -570,13 +570,13 @@ class InternationalForms implements NodeInterface
 
     public function setUserCreatedForms(UserCreatedForm $userCreatedForm)
     {
-        $this->userCreatedForm = $userCreatedForm;
+        $this->userCreatedForms = $userCreatedForm;
 
         return $this;
     }
 
     public function getUserCreatedForms()
     {
-        return $this->userCreatedForm;
+        return $this->userCreatedForms;
     }
 }
