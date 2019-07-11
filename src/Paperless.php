@@ -4,7 +4,7 @@
 namespace Ups;
 
 use GuzzleHttp\Client;
-use Ups\Entity\Upload;
+use Ups\Entity\Paperless\Upload;
 
 /**
  * @author Maciej Kotlarz <maciej.kotlarz@pixers.uk>
