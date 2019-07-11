@@ -43,7 +43,7 @@ class Paperless
      */
     public function upload(Upload $uploadRequest, $requestOption = '')
     {
-        $payload = $this->createUploadRequestPayload($uploadRequest, $requestOption);
+        $payload = $this->createPayload($uploadRequest, $requestOption);
         $guzzle = new Client();
         $response = $guzzle->post($this->getUri(), ['body' => json_encode($payload)]);
 
