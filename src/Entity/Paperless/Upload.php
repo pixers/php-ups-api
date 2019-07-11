@@ -12,7 +12,7 @@ class Upload
     /**
      * @var UserCreatedForm
      */
-    protected $userCreatedForm;
+    protected $userCreatedForms;
 
     /**
      * @var string
@@ -20,19 +20,33 @@ class Upload
     protected $shipperNumber;
 
     /**
-     * @return UserCreatedForm
+     * @param UserCreatedForm $userCreatedForm
+     * @return $this
      */
-    public function getUserCreatedForm()
+    public function addUserCreatedForm(UserCreatedForm $userCreatedForm)
     {
-        return $this->userCreatedForm;
+        $this->userCreatedForms[] = $userCreatedForm;
+
+        return $this;
     }
 
     /**
-     * @param UserCreatedForm $userCreatedForm
+     * @return UserCreatedForm
      */
-    public function setUserCreatedForm(UserCreatedForm $userCreatedForm)
+    public function getUserCreatedForms()
     {
-        $this->userCreatedForm = $userCreatedForm;
+        return $this->userCreatedForms;
+    }
+
+    /**
+     * @param array $userCreatedForm
+     * @return Upload
+     */
+    public function setUserCreatedForm(array $userCreatedForms)
+    {
+        $this->userCreatedForms = $userCreatedForms;
+
+        return $this;
     }
 
     /**
@@ -45,9 +59,12 @@ class Upload
 
     /**
      * @param string $shipperNumber
+     * @return Upload
      */
     public function setShipperNumber($shipperNumber)
     {
         $this->shipperNumber = $shipperNumber;
+
+        return $this;
     }
 }

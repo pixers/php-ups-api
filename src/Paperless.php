@@ -5,6 +5,7 @@ namespace Ups;
 
 use GuzzleHttp\Client;
 use Ups\Entity\Paperless\Upload;
+use Ups\Entity\Paperless\UserCreatedForm;
 
 /**
  * @author Maciej Kotlarz <maciej.kotlarz@pixers.uk>
@@ -55,8 +56,15 @@ class Paperless
      *
      * @return array
      */
-    protected function createUploadRequestPayload(Upload $request, $requestOption)
+    protected function createPayload(Upload $request, $requestOption)
     {
+        $userCreatedForms = [];
+
+        /** @var UserCreatedForm $userCreatedForm */
+        foreach ($request->getUserCreatedForms() as $userCreatedForm) {
+            $userCreatedForms[] = $this->createUserCreatedFormPayload($userCreatedForm);
+        }
+
         return [
             'UPSSecurity' => [
                 'UsernameToken' => [
@@ -72,13 +80,18 @@ class Paperless
                 'Request' => [
                     'RequestOption' => $requestOption
                 ],
-                'UserCreatedForm' => [
-                    'UserCreatedFormFileName' => $request->getUserCreatedForm()->getUserCreatedFormFileName(),
-                    'UserCreatedFormFileFormat' => $request->getUserCreatedForm()->getUserCreatedFormFileFormat(),
-                    'UserCreatedFormDocumentType' => $request->getUserCreatedForm()->getUserCreatedFormDocumentType(),
-                    'UserCreatedFormFile' => $request->getUserCreatedForm()->getUserCreatedFormFile()
-                ]
+                'UserCreatedForm' => $userCreatedForms
             ]
+        ];
+    }
+
+    protected function createUserCreatedFormPayload(UserCreatedForm $userCreatedForm)
+    {
+        return [
+            'UserCreatedFormFileName' => $userCreatedForm->getUserCreatedFormFileName(),
+            'UserCreatedFormFileFormat' => $userCreatedForm->getUserCreatedFormFileFormat(),
+            'UserCreatedFormDocumentType' => $userCreatedForm->getUserCreatedFormDocumentType(),
+            'UserCreatedFormFile' => $userCreatedForm->getUserCreatedFormFile()
         ];
     }
 
